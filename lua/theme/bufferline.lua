@@ -57,6 +57,13 @@ function M.setup()
       always_show_bufferline = true,
       offsets = {
         {
+          filetype = "NvimTree",
+          text = "File Explorer",
+          highlight = "NvimTreeRootFolder",
+          text_align = "left",
+          separator = true,
+        },
+        {
           filetype = "oil",
           text = "File Manager",
           highlight = "Directory",
