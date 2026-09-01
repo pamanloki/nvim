@@ -120,5 +120,10 @@ function M.setup()
       },
     })
   end
+
+  if pcall(require, "bufferline") then
+    package.loaded["theme.bufferline"] = nil
+    require("theme.bufferline").setup()
+  end
 end
 return M

@@ -16,23 +16,7 @@ return {
     { "<leader>bc", "<cmd>bdelete<cr>", desc = "Close buffer" },
     { "<leader>bo", "<cmd>BufferLineCloseOthers<cr>", desc = "Close other buffers" },
   },
-  opts = {
-    options = {
-      mode = "buffers",
-      numbers = "ordinal",
-      diagnostics = "nvim_lsp",
-      show_buffer_close_icons = true,
-      show_close_icon = false,
-      separator_style = "thin",
-      always_show_bufferline = true,
-      offsets = {
-        {
-          filetype = "oil",
-          text = "File Manager",
-          highlight = "Directory",
-          separator = true,
-        },
-      },
-    },
-  },
+  config = function()
+    require("theme.bufferline").setup()
+  end,
 }
