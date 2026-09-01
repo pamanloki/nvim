@@ -48,11 +48,10 @@ return {
     },
     icons = {
       buffer_index = true, -- show ordinal 1,2,3 numbers like NvChad
-      button = "", -- close button (Nerd Font). fallback below if it shows as a box
+      button = "×", -- close button; plain × renders in every font (Nerd Font glyphs get stripped on save)
       separator = { left = "▎", right = "" },
       separator_at_end = false,
       modified = { button = "●" },
-      pinned = { button = "", filename = true },
       inactive = { separator = { left = "▎", right = "" } },
     },
   },
