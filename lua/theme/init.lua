@@ -109,6 +109,40 @@ function M.setup()
   hl("CmpItemKindKeyword", { fg = c.base0E })
   hl("LspInlayHint", { fg = c.base04, bg = b(c.base20, c.base01), italic = true })
 
+  -- Title was previously unthemed; snacks dashboard header links to it
+  hl("Title", { fg = c.base0D, bold = true })
+
+  -- snacks.nvim: dashboard
+  hl("SnacksDashboardHeader", { fg = c.base0D, bold = true })
+  hl("SnacksDashboardTitle", { fg = c.base0D })
+  hl("SnacksDashboardDesc", { fg = c.base05 })
+  hl("SnacksDashboardKey", { fg = c.base09, bold = true })
+  hl("SnacksDashboardIcon", { fg = c.base0C })
+  hl("SnacksDashboardFooter", { fg = c.base03, italic = true })
+  hl("SnacksDashboardDir", { fg = c.base03 })
+  hl("SnacksDashboardFile", { fg = c.base05 })
+  hl("SnacksDashboardSpecial", { fg = c.base0E })
+
+  -- snacks.nvim: notifier
+  hl("SnacksNotifierInfo", { fg = c.base0B })
+  hl("SnacksNotifierWarn", { fg = b(c.base14, c.base0A) })
+  hl("SnacksNotifierError", { fg = b(c.base12, c.base08) })
+  hl("SnacksNotifierDebug", { fg = c.base03 })
+  hl("SnacksNotifierTrace", { fg = c.base0E })
+  hl("SnacksNotifierIconInfo", { fg = c.base0B })
+  hl("SnacksNotifierIconWarn", { fg = b(c.base14, c.base0A) })
+  hl("SnacksNotifierIconError", { fg = b(c.base12, c.base08) })
+  hl("SnacksNotifierBorderInfo", { fg = c.base0B })
+  hl("SnacksNotifierBorderWarn", { fg = b(c.base14, c.base0A) })
+  hl("SnacksNotifierBorderError", { fg = b(c.base12, c.base08) })
+  hl("SnacksNotifierTitleInfo", { fg = c.base0B })
+  hl("SnacksNotifierTitleWarn", { fg = b(c.base14, c.base0A) })
+  hl("SnacksNotifierTitleError", { fg = b(c.base12, c.base08) })
+
+  -- snacks.nvim: misc
+  hl("SnacksIndent", { fg = b(c.base21, c.base02) })
+  hl("SnacksIndentScope", { fg = c.base0D })
+
   local ok, lualine = pcall(require, "lualine")
   if ok then
     package.loaded["theme.lualine"] = nil
