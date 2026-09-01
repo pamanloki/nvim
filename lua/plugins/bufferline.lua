@@ -13,8 +13,8 @@ return {
     { "<leader>8", "<cmd>BufferLineGoToBuffer 8<cr>", desc = "Go to buffer 8" },
     { "<leader>9", "<cmd>BufferLineGoToBuffer 9<cr>", desc = "Go to buffer 9" },
     { "<leader>bp", "<cmd>BufferLinePick<cr>", desc = "Pick buffer" },
-    { "<leader>bc", "<cmd>bdelete<cr>", desc = "Close buffer" },
-    { "<leader>bo", "<cmd>BufferLineCloseOthers<cr>", desc = "Close other buffers" },
+    { "<leader>bc", function() Snacks.bufdelete() end, desc = "Close buffer" },
+    { "<leader>bo", function() Snacks.bufdelete.other() end, desc = "Close other buffers" },
     {
       "<leader>bd",
       function()
@@ -22,8 +22,9 @@ return {
         if vim.bo[cur].modifiable and vim.bo[cur].buftype == "" then
           vim.cmd("write")
         end
-        vim.cmd("bprevious")
-        pcall(vim.api.nvim_buf_delete, cur, {})
+        -- Snacks.bufdelete keeps the window layout so the bufferline offset
+        -- over the nvim-tree sidebar is not disturbed on close.
+        Snacks.bufdelete(cur)
       end,
       desc = "Save & close buffer (keep nvim open)",
     },
