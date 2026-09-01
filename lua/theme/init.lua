@@ -143,6 +143,22 @@ function M.setup()
   hl("SnacksIndent", { fg = b(c.base21, c.base02) })
   hl("SnacksIndentScope", { fg = c.base0D })
 
+  -- nvim-tree (and generic directory color, also used by oil header)
+  hl("Directory", { fg = c.base0D })
+  hl("NvimTreeNormal", { fg = c.base05, bg = c.base00 })
+  hl("NvimTreeNormalNC", { fg = c.base05, bg = c.base00 })
+  hl("NvimTreeWinSeparator", { fg = b(c.base21, c.base02), bg = c.base00 })
+  hl("NvimTreeRootFolder", { fg = c.base0E, bold = true })
+  hl("NvimTreeFolderName", { fg = c.base0D })
+  hl("NvimTreeOpenedFolderName", { fg = c.base0D, bold = true })
+  hl("NvimTreeFolderIcon", { fg = c.base0D })
+  hl("NvimTreeIndentMarker", { fg = b(c.base21, c.base02) })
+  hl("NvimTreeGitDirty", { fg = b(c.base14, c.base0A) })
+  hl("NvimTreeGitNew", { fg = b(c.base13, c.base0B) })
+  hl("NvimTreeGitDeleted", { fg = b(c.base12, c.base08) })
+  hl("NvimTreeSpecialFile", { fg = c.base0A })
+  hl("NvimTreeCursorLine", { bg = c.base01 })
+
   local ok, lualine = pcall(require, "lualine")
   if ok then
     package.loaded["theme.lualine"] = nil
