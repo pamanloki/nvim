@@ -41,6 +41,7 @@ return {
     auto_hide = false,
     tabpages = true,
     clickable = true,
+    no_name_title = "[No Name]", -- label for unnamed buffers instead of "[buffer N]"
     -- Reserve space for the nvim-tree sidebar (this is what fixes the
     -- "tabs drawn over the sidebar" problem, natively).
     sidebar_filetypes = {
