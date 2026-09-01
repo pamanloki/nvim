@@ -19,8 +19,8 @@ map("n", "<C-Down>", "<cmd>resize -2<cr>")
 map("n", "<C-Left>", "<cmd>vertical resize -2<cr>")
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>")
 
-map("n", "<S-l>", "<cmd>bnext<cr>")
-map("n", "<S-h>", "<cmd>bprevious<cr>")
+map("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>")
+map("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>")
 
 map("v", "<", "<gv")
 map("v", ">", ">gv")
