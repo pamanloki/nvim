@@ -57,10 +57,15 @@ return {
   },
   config = function(_, opts)
     require("barbar").setup(opts)
-    -- barbar loads after the theme and generates its own highlights, so
-    -- re-apply the flavours colors for barbar right after setup.
-    pcall(function()
-      require("theme.init").apply_barbar()
-    end)
+    -- barbar generates its own highlights on setup/first render, so defer
+    -- our flavours colors to land after it and win.
+    local function paint()
+      pcall(function()
+        require("theme.init").apply_barbar()
+      end)
+    end
+    vim.schedule(paint)
+    -- barbar rebuilds its highlights on ColorScheme; re-assert ours after.
+    vim.api.nvim_create_autocmd("ColorScheme", { callback = function() vim.schedule(paint) end })
   end,
 }

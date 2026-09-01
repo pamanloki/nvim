@@ -198,31 +198,48 @@ end
 -- after barbar loads (it generates its own highlights on setup).
 function M.apply_barbar()
   local c = require("theme.colors")
+  local function b(bright, fallback)
+    if bright and bright ~= "#" and bright ~= "" then
+      return bright
+    end
+    return fallback
+  end
   local function hl(group, opts)
     vim.api.nvim_set_hl(0, group, opts)
   end
-  local cur = c.base01
-  local fill = c.base00
-  local accent = c.base0D
+  local fill = c.base00 -- empty tabline background
+  local active = c.base02 -- raised background of the current tab
+  local accent = c.base0D -- teal accent
+  local mod = c.base09 -- modified marker
+
   hl("BufferTabpageFill", { fg = c.base03, bg = fill })
-  -- current buffer
-  hl("BufferCurrent", { fg = c.base05, bg = cur, bold = true })
-  hl("BufferCurrentIndex", { fg = accent, bg = cur, bold = true })
-  hl("BufferCurrentMod", { fg = c.base09, bg = cur })
-  hl("BufferCurrentSign", { fg = accent, bg = cur })
-  hl("BufferCurrentTarget", { fg = c.base08, bg = cur, bold = true })
-  -- visible (shown in another window)
+
+  -- current buffer: lifted background, bright text, teal index + accent bar
+  hl("BufferCurrent", { fg = c.base06, bg = active, bold = true })
+  hl("BufferCurrentIndex", { fg = accent, bg = active, bold = true })
+  hl("BufferCurrentSign", { fg = accent, bg = active })
+  hl("BufferCurrentMod", { fg = mod, bg = active })
+  hl("BufferCurrentTarget", { fg = b(c.base12, c.base08), bg = active, bold = true })
+  hl("BufferCurrentIcon", { fg = c.base05, bg = active })
+  hl("BufferCurrentButton", { fg = c.base04, bg = active })
+
+  -- visible (open in another split, not focused)
   hl("BufferVisible", { fg = c.base05, bg = fill })
-  hl("BufferVisibleIndex", { fg = c.base05, bg = fill })
-  hl("BufferVisibleMod", { fg = c.base09, bg = fill })
+  hl("BufferVisibleIndex", { fg = c.base04, bg = fill })
   hl("BufferVisibleSign", { fg = c.base03, bg = fill })
-  hl("BufferVisibleTarget", { fg = c.base08, bg = fill, bold = true })
-  -- inactive
-  hl("BufferInactive", { fg = c.base03, bg = fill })
+  hl("BufferVisibleMod", { fg = mod, bg = fill })
+  hl("BufferVisibleTarget", { fg = b(c.base12, c.base08), bg = fill, bold = true })
+  hl("BufferVisibleIcon", { fg = c.base05, bg = fill })
+  hl("BufferVisibleButton", { fg = c.base04, bg = fill })
+
+  -- inactive: muted
+  hl("BufferInactive", { fg = c.base04, bg = fill })
   hl("BufferInactiveIndex", { fg = c.base03, bg = fill })
-  hl("BufferInactiveMod", { fg = c.base09, bg = fill })
-  hl("BufferInactiveSign", { fg = c.base02, bg = fill })
-  hl("BufferInactiveTarget", { fg = c.base08, bg = fill, bold = true })
+  hl("BufferInactiveSign", { fg = b(c.base21, c.base02), bg = fill })
+  hl("BufferInactiveMod", { fg = mod, bg = fill })
+  hl("BufferInactiveTarget", { fg = b(c.base12, c.base08), bg = fill, bold = true })
+  hl("BufferInactiveIcon", { fg = c.base04, bg = fill })
+  hl("BufferInactiveButton", { fg = c.base03, bg = fill })
 end
 
 return M
