@@ -32,4 +32,13 @@ return {
       },
     },
   },
+  config = function(_, opts)
+    require("nvim-tree").setup(opts)
+    -- nvim-tree loads after the theme (it is lazy), so it overwrites our
+    -- NvimTree* highlights with its own defaults. Re-apply the flavours
+    -- theme right after setup so the sidebar follows the colorscheme.
+    pcall(function()
+      require("theme.init").setup()
+    end)
+  end,
 }
