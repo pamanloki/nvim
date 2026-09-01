@@ -13,13 +13,18 @@ return {
       nerd_font_variant = "mono",
     },
     completion = {
-      documentation = { auto_show = true },
+      documentation = { auto_show = true, auto_show_delay_ms = 250 },
       menu = {
         border = "rounded",
+        draw = {
+          treesitter = { "lsp" },
+        },
       },
       list = {
         selection = { preselect = false }, -- atau true, sesuaikan
       },
+      -- Preview saran langsung di baris (khas NvChad/editor modern)
+      ghost_text = { enabled = true },
     },
     signature = {
       enabled = true,
