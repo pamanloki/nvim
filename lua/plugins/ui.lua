@@ -12,11 +12,6 @@ return {
     end,
   },
   {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    opts = {},
-  },
-  {
     "folke/which-key.nvim",
     event = "VeryLazy",
     opts = {},

@@ -40,6 +40,11 @@ return {
     input = { enabled = true },
     scroll = { enabled = true },
     words = { enabled = true },
+    indent = {
+      enabled = true,
+      indent = { char = "│" },
+      scope = { enabled = true, char = "│" },
+    },
     terminal = {},
   },
 }
