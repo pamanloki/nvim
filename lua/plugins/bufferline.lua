@@ -15,6 +15,18 @@ return {
     { "<leader>bp", "<cmd>BufferLinePick<cr>", desc = "Pick buffer" },
     { "<leader>bc", "<cmd>bdelete<cr>", desc = "Close buffer" },
     { "<leader>bo", "<cmd>BufferLineCloseOthers<cr>", desc = "Close other buffers" },
+    {
+      "<leader>bd",
+      function()
+        local cur = vim.api.nvim_get_current_buf()
+        if vim.bo[cur].modifiable and vim.bo[cur].buftype == "" then
+          vim.cmd("write")
+        end
+        vim.cmd("bprevious")
+        pcall(vim.api.nvim_buf_delete, cur, {})
+      end,
+      desc = "Save & close buffer (keep nvim open)",
+    },
   },
   config = function()
     require("theme.bufferline").setup()
