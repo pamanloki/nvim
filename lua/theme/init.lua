@@ -158,9 +158,8 @@ function M.setup()
     })
   end
 
-  if pcall(require, "bufferline") then
-    package.loaded["theme.bufferline"] = nil
-    require("theme.bufferline").setup()
+  if pcall(require, "barbar") then
+    M.apply_barbar()
   end
 end
 
@@ -193,6 +192,37 @@ function M.apply_nvimtree()
   hl("NvimTreeGitDeleted", { fg = b(c.base12, c.base08) })
   hl("NvimTreeSpecialFile", { fg = c.base0A })
   hl("NvimTreeCursorLine", { bg = c.base01 })
+end
+
+-- barbar.nvim tab bar colors, derived from the flavours palette. Re-applied
+-- after barbar loads (it generates its own highlights on setup).
+function M.apply_barbar()
+  local c = require("theme.colors")
+  local function hl(group, opts)
+    vim.api.nvim_set_hl(0, group, opts)
+  end
+  local cur = c.base01
+  local fill = c.base00
+  local accent = c.base0D
+  hl("BufferTabpageFill", { fg = c.base03, bg = fill })
+  -- current buffer
+  hl("BufferCurrent", { fg = c.base05, bg = cur, bold = true })
+  hl("BufferCurrentIndex", { fg = accent, bg = cur, bold = true })
+  hl("BufferCurrentMod", { fg = c.base09, bg = cur })
+  hl("BufferCurrentSign", { fg = accent, bg = cur })
+  hl("BufferCurrentTarget", { fg = c.base08, bg = cur, bold = true })
+  -- visible (shown in another window)
+  hl("BufferVisible", { fg = c.base05, bg = fill })
+  hl("BufferVisibleIndex", { fg = c.base05, bg = fill })
+  hl("BufferVisibleMod", { fg = c.base09, bg = fill })
+  hl("BufferVisibleSign", { fg = c.base03, bg = fill })
+  hl("BufferVisibleTarget", { fg = c.base08, bg = fill, bold = true })
+  -- inactive
+  hl("BufferInactive", { fg = c.base03, bg = fill })
+  hl("BufferInactiveIndex", { fg = c.base03, bg = fill })
+  hl("BufferInactiveMod", { fg = c.base09, bg = fill })
+  hl("BufferInactiveSign", { fg = c.base02, bg = fill })
+  hl("BufferInactiveTarget", { fg = c.base08, bg = fill, bold = true })
 end
 
 return M

@@ -4,17 +4,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
--- Force bufferline to recompute its sidebar offset when buffers/windows
--- change, so closing a buffer next to the nvim-tree sidebar doesn't leave
--- the tabs drawn over the sidebar.
-vim.api.nvim_create_autocmd({ "BufEnter", "BufDelete", "BufWipeout", "WinEnter", "WinClosed" }, {
-  callback = function()
-    vim.schedule(function()
-      pcall(vim.cmd, "redrawtabline")
-    end)
-  end,
-})
-
 vim.api.nvim_create_autocmd("BufWritePost", {
   pattern = vim.fn.stdpath("config") .. "/lua/theme/colors.lua",
   callback = function()

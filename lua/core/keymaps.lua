@@ -19,8 +19,7 @@ map("n", "<C-Down>", "<cmd>resize -2<cr>")
 map("n", "<C-Left>", "<cmd>vertical resize -2<cr>")
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>")
 
-map("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>")
-map("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>")
+-- Buffer navigation (<S-l>/<S-h>) is defined in lua/plugins/tabline.lua
 
 map("v", "<", "<gv")
 map("v", ">", ">gv")
