@@ -12,6 +12,13 @@ return {
     },
   },
   {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    dependencies = { "mason.nvim" },
+    opts = {
+      ensure_installed = { "stylua", "shfmt" },
+    },
+  },
+  {
     "neovim/nvim-lspconfig",
     dependencies = { "saghen/blink.cmp", "mason-lspconfig.nvim" },
     config = function()
