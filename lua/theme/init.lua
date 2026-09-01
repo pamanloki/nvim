@@ -208,20 +208,20 @@ function M.apply_barbar()
     vim.api.nvim_set_hl(0, group, opts)
   end
   local fill = c.base00 -- empty tabline background
-  local active = c.base02 -- raised background of the current tab
-  local accent = c.base0D -- teal accent
+  local active = c.base0A -- bright yellow fill for the current tab
+  local on_active = c.base00 -- dark text on the yellow tab
   local mod = c.base09 -- modified marker
 
   hl("BufferTabpageFill", { fg = c.base03, bg = fill })
 
-  -- current buffer: lifted background, bright text, teal index + accent bar
-  hl("BufferCurrent", { fg = c.base06, bg = active, bold = true })
-  hl("BufferCurrentIndex", { fg = accent, bg = active, bold = true })
-  hl("BufferCurrentSign", { fg = accent, bg = active })
-  hl("BufferCurrentMod", { fg = mod, bg = active })
+  -- current buffer: bright yellow filled background with dark text
+  hl("BufferCurrent", { fg = on_active, bg = active, bold = true })
+  hl("BufferCurrentIndex", { fg = on_active, bg = active, bold = true })
+  hl("BufferCurrentSign", { fg = active, bg = active })
+  hl("BufferCurrentMod", { fg = b(c.base12, c.base08), bg = active, bold = true })
   hl("BufferCurrentTarget", { fg = b(c.base12, c.base08), bg = active, bold = true })
-  hl("BufferCurrentIcon", { fg = c.base05, bg = active })
-  hl("BufferCurrentButton", { fg = c.base04, bg = active })
+  hl("BufferCurrentIcon", { fg = on_active, bg = active })
+  hl("BufferCurrentButton", { fg = on_active, bg = active })
 
   -- visible (open in another split, not focused)
   hl("BufferVisible", { fg = c.base05, bg = fill })
