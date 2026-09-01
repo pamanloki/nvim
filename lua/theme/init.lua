@@ -144,20 +144,7 @@ function M.setup()
   hl("SnacksIndentScope", { fg = c.base0D })
 
   -- nvim-tree (and generic directory color, also used by oil header)
-  hl("Directory", { fg = c.base0D })
-  hl("NvimTreeNormal", { fg = c.base05, bg = c.base00 })
-  hl("NvimTreeNormalNC", { fg = c.base05, bg = c.base00 })
-  hl("NvimTreeWinSeparator", { fg = b(c.base21, c.base02), bg = c.base00 })
-  hl("NvimTreeRootFolder", { fg = c.base0E, bold = true })
-  hl("NvimTreeFolderName", { fg = c.base0D })
-  hl("NvimTreeOpenedFolderName", { fg = c.base0D, bold = true })
-  hl("NvimTreeFolderIcon", { fg = c.base0D })
-  hl("NvimTreeIndentMarker", { fg = b(c.base21, c.base02) })
-  hl("NvimTreeGitDirty", { fg = b(c.base14, c.base0A) })
-  hl("NvimTreeGitNew", { fg = b(c.base13, c.base0B) })
-  hl("NvimTreeGitDeleted", { fg = b(c.base12, c.base08) })
-  hl("NvimTreeSpecialFile", { fg = c.base0A })
-  hl("NvimTreeCursorLine", { bg = c.base01 })
+  M.apply_nvimtree()
 
   local ok, lualine = pcall(require, "lualine")
   if ok then
@@ -176,4 +163,36 @@ function M.setup()
     require("theme.bufferline").setup()
   end
 end
+
+-- Applies just the nvim-tree highlights. Kept separate so nvim-tree (which
+-- lazy-loads after the theme) can re-apply only these on load, without
+-- re-running the whole theme setup (that would also re-init bufferline and
+-- disturb its sidebar offset).
+function M.apply_nvimtree()
+  local c = require("theme.colors")
+  local function b(bright, fallback)
+    if bright and bright ~= "#" and bright ~= "" then
+      return bright
+    end
+    return fallback
+  end
+  local function hl(group, opts)
+    vim.api.nvim_set_hl(0, group, opts)
+  end
+  hl("Directory", { fg = c.base0D })
+  hl("NvimTreeNormal", { fg = c.base05, bg = c.base00 })
+  hl("NvimTreeNormalNC", { fg = c.base05, bg = c.base00 })
+  hl("NvimTreeWinSeparator", { fg = b(c.base21, c.base02), bg = c.base00 })
+  hl("NvimTreeRootFolder", { fg = c.base0E, bold = true })
+  hl("NvimTreeFolderName", { fg = c.base0D })
+  hl("NvimTreeOpenedFolderName", { fg = c.base0D, bold = true })
+  hl("NvimTreeFolderIcon", { fg = c.base0D })
+  hl("NvimTreeIndentMarker", { fg = b(c.base21, c.base02) })
+  hl("NvimTreeGitDirty", { fg = b(c.base14, c.base0A) })
+  hl("NvimTreeGitNew", { fg = b(c.base13, c.base0B) })
+  hl("NvimTreeGitDeleted", { fg = b(c.base12, c.base08) })
+  hl("NvimTreeSpecialFile", { fg = c.base0A })
+  hl("NvimTreeCursorLine", { bg = c.base01 })
+end
+
 return M
