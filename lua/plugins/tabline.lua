@@ -48,10 +48,11 @@ return {
     },
     icons = {
       buffer_index = true, -- show ordinal 1,2,3 numbers like NvChad
-      button = "",
+      button = "", -- close button (Nerd Font). fallback below if it shows as a box
       separator = { left = "▎", right = "" },
       separator_at_end = false,
       modified = { button = "●" },
+      pinned = { button = "", filename = true },
       inactive = { separator = { left = "▎", right = "" } },
     },
   },
